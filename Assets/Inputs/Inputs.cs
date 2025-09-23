@@ -99,6 +99,33 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change1"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e556a62-5825-4401-9d31-1d19c9e5f897"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change2"",
+                    ""type"": ""Button"",
+                    ""id"": ""af718296-5d1a-45c1-b477-2281033b9269"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change3"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba5338d3-694b-479a-b110-b29cf2b87705"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +139,39 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1055f8dc-96de-4d52-87a5-64023526563d"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b44c08da-7d92-4fd4-ac67-1edeb8eb2457"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7ee3b3f-e2a2-4935-b5c8-2e7c9040118a"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +181,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
+        m_GamePlay_Change1 = m_GamePlay.FindAction("Change1", throwIfNotFound: true);
+        m_GamePlay_Change2 = m_GamePlay.FindAction("Change2", throwIfNotFound: true);
+        m_GamePlay_Change3 = m_GamePlay.FindAction("Change3", throwIfNotFound: true);
     }
 
     ~@Inputs()
@@ -202,6 +265,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Shoot;
+    private readonly InputAction m_GamePlay_Change1;
+    private readonly InputAction m_GamePlay_Change2;
+    private readonly InputAction m_GamePlay_Change3;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
     /// </summary>
@@ -217,6 +283,18 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/Shoot".
         /// </summary>
         public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Change1".
+        /// </summary>
+        public InputAction @Change1 => m_Wrapper.m_GamePlay_Change1;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Change2".
+        /// </summary>
+        public InputAction @Change2 => m_Wrapper.m_GamePlay_Change2;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Change3".
+        /// </summary>
+        public InputAction @Change3 => m_Wrapper.m_GamePlay_Change3;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -246,6 +324,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Change1.started += instance.OnChange1;
+            @Change1.performed += instance.OnChange1;
+            @Change1.canceled += instance.OnChange1;
+            @Change2.started += instance.OnChange2;
+            @Change2.performed += instance.OnChange2;
+            @Change2.canceled += instance.OnChange2;
+            @Change3.started += instance.OnChange3;
+            @Change3.performed += instance.OnChange3;
+            @Change3.canceled += instance.OnChange3;
         }
 
         /// <summary>
@@ -260,6 +347,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Change1.started -= instance.OnChange1;
+            @Change1.performed -= instance.OnChange1;
+            @Change1.canceled -= instance.OnChange1;
+            @Change2.started -= instance.OnChange2;
+            @Change2.performed -= instance.OnChange2;
+            @Change2.canceled -= instance.OnChange2;
+            @Change3.started -= instance.OnChange3;
+            @Change3.performed -= instance.OnChange3;
+            @Change3.canceled -= instance.OnChange3;
         }
 
         /// <summary>
@@ -307,5 +403,26 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Change1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChange1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Change2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChange2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Change3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChange3(InputAction.CallbackContext context);
     }
 }
