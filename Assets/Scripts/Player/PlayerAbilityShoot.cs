@@ -51,6 +51,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 		if(Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			_currentGun = Instantiate(gunBase, gunPosition);
+			_currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
 		}
     }
     public virtual void Change2()
@@ -58,6 +59,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 		if(Input.GetKeyDown(KeyCode.Alpha2))
 		{
 			_currentGun = Instantiate(gunAngle, gunPosition);
+			_currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
 		}
     }
     public virtual void Change3()
@@ -65,6 +67,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 		if(Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			_currentGun = Instantiate(gunShootLimit, gunPosition);
+			_currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
 		}
     }
 }
