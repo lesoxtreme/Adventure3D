@@ -1,10 +1,15 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour , IDamageable
 {
 	[Header("Run Setup")]
 	public KeyCode keyRun = KeyCode.LeftShift;
 	public float speedRun = 1.5f;
+
+	[Header("Flash")]
+	public List<FlashColor> flashColors;
 
 	public CharacterController characterController;
 	public float speed = 1f;
@@ -13,6 +18,20 @@ public class Player : MonoBehaviour
 	private float vSpeed = 0f;
 	public Animator animator;
 	public float jumpSpeed = 15f;
+
+	#region LIFE
+
+	public void Damage(float damage)
+	{
+		flashColors.ForEach(i => i.Flash());
+	}
+
+	public void Damage(float damage, Vector3 dir)
+	{
+		Damage(damage);
+	}
+
+	#endregion
 	void Update()
 	{
 			transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
