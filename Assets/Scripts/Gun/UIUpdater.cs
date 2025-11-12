@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class UIGunUpdater : MonoBehaviour
+public class UIUpdater : MonoBehaviour
 {
 	public Image uiImage;
 

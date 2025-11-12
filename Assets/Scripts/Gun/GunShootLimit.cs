@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 public class GunShootLimit : GunBase
 {
-	public List<UIGunUpdater> uiGunUpdaters;
-
+	public List<UIUpdater> uiUpdaters;
 	public float maxShoot = 5;
 	public float timeToRecharge = 1f;
 
@@ -61,7 +60,7 @@ public class GunShootLimit : GunBase
 		while(time < timeToRecharge)
 		{
 			time += Time.deltaTime;
-			uiGunUpdaters.ForEach(i => i.UpdateValue(time/timeToRecharge));
+			uiUpdaters.ForEach(i => i.UpdateValue(time/timeToRecharge));
 			yield return new WaitForEndOfFrame();
 		}
 		_currentShoots = 0;
@@ -70,11 +69,11 @@ public class GunShootLimit : GunBase
 
 	private void UpdateUI()
 	{
-		uiGunUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
+		uiUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
 	}
 
 	private void GetAllUis()
 	{
-		uiGunUpdaters = GameObject.FindObjectsOfType<UIGunUpdater>().ToList();
+		uiUpdaters = GameObject.FindObjectsOfType<UIUpdater>().ToList();
 	}
 }

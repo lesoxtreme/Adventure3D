@@ -27,4 +27,5 @@ public class PlayerStates : MonoBehaviour
 
 		stateMachine.SwitchState(PlayerStateMachine.IDLE);
 	}
+
 }
