@@ -13,6 +13,7 @@ public class Player : Singleton<Player>  //, IDamageable
 	[Header("Flash")]
 	public List<FlashColor> flashColors;
 
+
 	[Header("Life")]
 	public HealthBase healthBase;
 
@@ -21,6 +22,7 @@ public class Player : Singleton<Player>  //, IDamageable
 
 
 	private bool _alive = true;
+	private bool _jumping = false;
 
 	public List<Collider> colliders;
 	public CharacterController characterController;
@@ -29,7 +31,7 @@ public class Player : Singleton<Player>  //, IDamageable
 	public float gravity = 9.8f;
 	private float vSpeed = 0f;
 	public Animator animator;
-	public float jumpSpeed = 15f;
+	public float jumpSpeed = 7f;
 
 	private void OnValidate()
 	{
@@ -98,10 +100,21 @@ public class Player : Singleton<Player>  //, IDamageable
 
 			if(characterController.isGrounded)
 			{
+				if(_jumping)
+				{
+					_jumping = false;
+					animator.SetTrigger("Land");
+				}
 				vSpeed = 0;
 				if(Input.GetKeyDown(KeyCode.Space))
 				{
 					vSpeed = jumpSpeed;
+
+					if(!_jumping)
+					{
+						_jumping = true;
+						animator.SetTrigger("Jump");
+					}
 				}
 			}
 			vSpeed -= gravity * Time.deltaTime;
@@ -113,6 +126,7 @@ public class Player : Singleton<Player>  //, IDamageable
 				{
 					speedVector *= speedRun;
 					animator.speed = speedRun;
+					
 				}
 				else
 				{
@@ -120,8 +134,8 @@ public class Player : Singleton<Player>  //, IDamageable
 				}
 			}
 			characterController.Move(speedVector * Time.deltaTime);
-
 			animator.SetBool("Run", inputAxisVertical !=0);
+
 			}
 			
 
