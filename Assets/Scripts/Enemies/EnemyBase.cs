@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using Animation;
 
@@ -23,6 +24,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
 	public float startAnimationDuration = .2f;
 	public Ease startAnimationEase = Ease.OutBack;
 	public bool startWithBornAnimation = true;
+
+	[Header("Events")]
+	public UnityEvent OnKillEvent;
 
 	private Player _player;
 
@@ -56,6 +60,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 		if (collider != null) collider.enabled = false;
 		Destroy(gameObject, timeToDeath);
 		PlayAnimationByTrigger(AnimationType.DEATH);
+		OnKillEvent?.Invoke();
 
 	}
 	public void OnDamage(float f)

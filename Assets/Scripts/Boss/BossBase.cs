@@ -47,6 +47,7 @@ namespace Boss
 			OnValidate();
 			Init();
 			healthBase.OnKill += OnBossKill;
+			StartAttack();
 		}
 
 		private void Start()
