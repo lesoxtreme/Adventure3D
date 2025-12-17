@@ -15,10 +15,13 @@ public class ItemCollectableBase : MonoBehaviour
 
     [Header("Sounds")]
     public AudioSource audioSource;
+    private SFXSetup _currentSFXSetup;
+    public SFXType sfxType;
 
     private void Awake()
     {
-       // if(particleSystem != null) particleSystem.transform.SetParent(null);        
+       // if(particleSystem != null) particleSystem.transform.SetParent(null);   
+       _currentSFXSetup = SoundManager.Instance.GetSFXByType(sfxType);
     }
     
     private void OnTriggerEnter(Collider collision)
@@ -29,10 +32,14 @@ public class ItemCollectableBase : MonoBehaviour
         }
     }
 
-    
+    private void PlaySFX()
+    {
+        SFXPool.Instance.Play(sfxType);
+    }
 
     protected virtual void Collect()
     {
+        PlaySFX();
         if(collider !=null) collider.enabled = false;
         if(graphicItem !=null) graphicItem.SetActive(false);
         Invoke("HideObject", timeToHide);
@@ -48,7 +55,12 @@ public class ItemCollectableBase : MonoBehaviour
     protected virtual void OnCollect()
     {
         if(particleSystem != null) particleSystem.Play();
-        if(audioSource != null) audioSource.Play();
+
+        
+        //audioSource.clip = _currentSFXSetup.audioClip;
+        //audioSource.Play();
+
+
         ItemManager.Instance.AddByType(itemType);
     }
 }

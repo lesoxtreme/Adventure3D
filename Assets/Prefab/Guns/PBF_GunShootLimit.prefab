@@ -196,6 +196,7 @@ MonoBehaviour:
   positionToShoot: {fileID: 5968080178662092080}
   timeBetweentShoot: 0.3
   speed: 50
+  sfxType: 3
   uiUpdaters:
   - {fileID: 1032335320948405240}
   maxShoot: 5

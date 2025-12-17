@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6911725699962489684}
   - component: {fileID: 7724645669860590228}
+  - component: {fileID: 6639956962156084357}
   m_Layer: 0
   m_Name: PBF_ChestItemCoin
   m_TagString: Untagged
@@ -47,4 +48,26 @@ MonoBehaviour:
   coinNumber: 5
   coinObject: {fileID: 7507268371358605179, guid: 0b412312ba205774e957a8f3ccb2095b, type: 3}
   tweenDuration: 0.2
+  tweenEndTime: 0.1
   tweenEase: 27
+  randomRange: {x: -2, y: 2}
+--- !u!114 &6639956962156084357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491675612849215565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a635992e06db1d44a5fc66da81ddc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  compareTag: Player
+  particleSystem: {fileID: 0}
+  timeToHide: 3
+  graphicItem: {fileID: 0}
+  collider: {fileID: 0}
+  audioSource: {fileID: 0}
+  sfxType: 0

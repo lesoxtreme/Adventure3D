@@ -51,7 +51,9 @@ MonoBehaviour:
   particleSystem: {fileID: 0}
   timeToHide: 3
   graphicItem: {fileID: 8019223751511311741}
+  collider: {fileID: 0}
   audioSource: {fileID: 0}
+  sfxType: 1
 --- !u!135 &1880188438064089190
 SphereCollider:
   m_ObjectHideFlags: 0
