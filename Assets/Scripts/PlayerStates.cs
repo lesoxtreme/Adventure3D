@@ -28,15 +28,15 @@ public class PlayerStates : MonoBehaviour
 		stateMachine.SwitchState(PlayerStateMachine.IDLE);
 	}
 
-	public void OnStateEnter (StateBase WALK)
+	public void Walking()
 	{
 		stateMachine.SwitchState(PlayerStateMachine.WALK);
-		//move();
+		//Move();
 	}
 
-	public void OnStateExit (StateBase WALK)
+	public void Jumping()
 	{
-		stateMachine.SwitchState(PlayerStateMachine.IDLE);
+		stateMachine.SwitchState(PlayerStateMachine.JUMP);
+		//Jump();
 	}
-
 }
